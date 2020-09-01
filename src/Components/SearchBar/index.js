@@ -8,7 +8,7 @@ export const SearchBar = props => {
 
   const handleChange = event => {
     setInputValue(event.target.value);
-    props.search(event.target.value); // <-- Searching-function
+    // props.search(event.target.value); // <-- Searching-function
   };
   const handleKeyDown = event => {
     if (event.key === 'Enter') {

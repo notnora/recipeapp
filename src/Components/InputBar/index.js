@@ -7,7 +7,7 @@ export const InputBar = props => {
     const handleKeyDown = event => {
         if (event.key === 'Enter') {
             let ingredient = event.target.value;
-            console.log('Enter: ', ingredient);
+            console.log('InputEnter: ', ingredient);
             props.addIngredient(ingredient);
             setInputValue(inputValue => []);
         }

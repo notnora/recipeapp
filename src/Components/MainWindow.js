@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {SearchBar} from "./SearchBar";
 import {InputBar} from './InputBar';
 import { Button } from '@material-ui/core';
+import IngredientList from "./IngredientList";
 
 export const MainWindow = props => {
     /*
@@ -25,8 +26,13 @@ export const MainWindow = props => {
     const resetIngredients = () => {
         setIngredientList(ingredientList => []);
     };
+    const search = searchWordItem => {
+      console.log("Searched for: ", searchWordItem)
+    };
     return (
         <div>
+            <IngredientList
+                ingredientList={ingredientList} />
             <SearchBar
                 search = {searchRecipe}/>
             <InputBar

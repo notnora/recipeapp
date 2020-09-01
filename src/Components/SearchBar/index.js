@@ -10,12 +10,21 @@ export const SearchBar = props => {
     setInputValue(event.target.value);
     props.search(event.target.value); // <-- Searching-function
   };
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+        let searchWord = event.target.value;
+        //console.log('Search Enter: ', searchWord);
+        props.search(searchWord);
+        setInputValue(inputValue => []);
+    }
+  };
 
   return(
       <div className="search-bar">
       <TextField id="s-bar"
                  value={inputValue}
                  onChange={handleChange}
+                 onKeyDown={handleKeyDown}
                  type="text"/>
       </div>
   );

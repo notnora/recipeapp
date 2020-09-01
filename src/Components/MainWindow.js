@@ -3,15 +3,17 @@ import {SearchBar} from "./SearchBar";
 import {InputBar} from './InputBar';
 import { Button } from '@material-ui/core';
 import IngredientList from "./IngredientList";
+import RecipeList from "./RecipeList";
 /*
 Example responses:
  */
-var recipe_search_results = require("../utils/recipe_search_respone");
+
 
 export const MainWindow = props => {
     /*
         States
      */
+    var recipe_search_results = require("../utils/recipe_search_respone");
     const [sorting, setSorting] = React.useState("ASC");
     const [recipes, setRecipes] = React.useState([]);
     const [searchWord, setSearchWord] = React.useState("");
@@ -31,7 +33,8 @@ export const MainWindow = props => {
         /*
         Filter out recipes
          */
-      return recipes
+
+      return searchResults
           .filter(recipe => recipe.title.toLowerCase()
               .includes(searchWord.toLocaleLowerCase()))
           .sort(sortRecipesByTitle);
@@ -39,6 +42,8 @@ export const MainWindow = props => {
     const searchRecipe = word => {
         setSearchWord(word);
         console.log("Searchword: ", word)
+        let recipe_example_db = require("../utils/30_random_recipe");
+        setRecipes(recipe_example_db)
     };
     const addIngredientToList = ingredient => {
         setIngredientList(ingredients =>[...ingredients, ingredient]);
@@ -65,6 +70,9 @@ export const MainWindow = props => {
                 color="primary">
                 Reset ingredients
             </Button>
+            <RecipeList
+                recipeList={filterRecipes()}
+            />
 
 
         </div>

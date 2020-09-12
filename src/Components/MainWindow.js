@@ -25,7 +25,15 @@ export const MainWindow = props => {
         console.log("New ingredient list: ", ingredientList);
 
     });
-      const sortRecipesByTitle = (a, b) => {
+
+    const sortRecipesByTitle = (a, b) => {
+        /**
+         * Sorts the a and b based on ascending or descending order.
+         * a and b must be a recipe-object
+         * @param   {JSON}  a    The first object to compare
+         * @param   {JSON}  b    The  second object to compare
+         * @return  {Int}        ASC: 1 if a is greater, -1 if not. DESC: opposite of ASC
+         */
         if (sorting === "ASC") {
           return a.title.trim().toLowerCase() > b.title.trim().toLowerCase() ? 1 : -1;
         } else {
@@ -33,8 +41,14 @@ export const MainWindow = props => {
         }
       };
 
-      const filterRecipes = (word, recipe_collection) => {
-
+    const filterRecipes = (word, recipe_collection) => {
+        /**
+         * Filters the recipe list based on if it contains the word or not
+         *
+         * @param   {String}  word                The word to match
+         * @param   {Array}   recipe_collection   The list of recipe-objects to be matched.
+         * @return  {Array}                      A list of the matching recipes
+         */
       var recs = recipe_collection.recipes
           .filter(recipe => recipe.title.toLowerCase()
               .includes(word.toLocaleLowerCase()))
@@ -44,14 +58,27 @@ export const MainWindow = props => {
     };
 
     const addRecipeToList = recipe => {
-      setRecipeList(recipes => [...recipes, recipe]);
-      console.log('added recipe: ', recipe.title);
+        /**
+         * Adds a recipe object to the recipe-list
+         * @param   {JSON}  recipe     The recipe to be added to the list
+         * @return                      null
+         */
+        setRecipeList(recipes => [...recipes, recipe]);
+        console.log('added recipe: ', recipe.title);
     };
     const searchRecipe = word => {
-        setSearchWord(word);
-        console.log("Searchword: ", word);
-        let recipe_example_db = require("../utils/30_random_recipe");
-        var match_recipes = filterRecipes(word, recipe_example_db);
+        /**
+         * WIP (Work in Progress)
+         * Search through the recipe-collection
+         * for a title that matches the word
+         *
+         * @param   {String}    word    The search word to match
+         * @return                      Null
+         */
+        setSearchWord(word); // Set the search word-state
+        console.log("Searchword: ", word); // Debug
+        let recipe_example_db = require("../utils/30_random_recipe"); // Load the recipe-collection. Will be an api-call
+        var match_recipes = filterRecipes(word, recipe_example_db); // get the matching recipes
         match_recipes.map(recipe => (
             addRecipeToList(recipe)
         ));
@@ -59,15 +86,22 @@ export const MainWindow = props => {
 
     };
     const addIngredientToList = ingredient => {
+        /**
+         * Adds the specified ingredient to the list of ingredients.
+         * @param   {String}    ingredient    The ingredient to add
+         * @return                            null
+         */
         setIngredientList(ingredients =>[...ingredients, ingredient]);
         console.log("Added: ", ingredient);
     };
     const resetIngredients = () => {
+        /**
+         * Reset the ingredient list to be empty
+         * @return  Null
+         */
         setIngredientList(ingredientList => []);
     };
-    const search = searchWordItem => {
-      console.log("Searched for: ", searchWordItem)
-    };
+
     return (
         <div>
             <IngredientList

@@ -5,6 +5,13 @@ import {ListItem} from "@material-ui/core";
 import {Divider}from "@material-ui/core";
 
 export const RecipeList = props => {
+    /**
+     * WIP
+     * A list of recipe titles.
+     * These titles will eventually be able to expand and show the whole recipe
+     *
+     * @component
+     */
     console.log("RECIPELIST: ", props.recipeList);
     if (props.recipeList.length === 0){
         console.log("0");

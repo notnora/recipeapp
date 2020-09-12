@@ -2,7 +2,12 @@ import React from "react";
 import {TextField} from "@material-ui/core";
 
 export const InputBar = props => {
-
+    /**
+     * A Text Field where the user can enter ingredients.
+     * The ingredients are added once the enter-button is pressed.
+     *
+     * @component
+     */
     const [inputValue, setInputValue] = React.useState("");
     const handleKeyDown = event => {
         if (event.key === 'Enter') {

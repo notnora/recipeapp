@@ -3,6 +3,14 @@ import { TextField } from '@material-ui/core';
 import './style.css';
 
 export const SearchBar = props => {
+    /**
+     * A Text field search bar where the user can search for recipes.
+     * It will match the title of the recipes.
+     * It only does the search, once the enter button is pressed.
+     * This is due to limited api-calls pr day during testing.
+     *
+     * @component
+     */
 
   const [inputValue, setInputValue] = React.useState("");
 

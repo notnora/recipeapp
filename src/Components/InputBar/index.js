@@ -20,6 +20,7 @@ export const InputBar = props => {
         <div>
             <TextField
                 id="inputbar"
+                label='Add Ingredient'
                 type="text"
                 onKeyDown={handleKeyDown}
                 onChange={handleChange}

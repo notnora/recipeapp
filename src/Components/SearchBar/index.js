@@ -22,6 +22,7 @@ export const SearchBar = props => {
   return(
       <div className="search-bar">
       <TextField id="s-bar"
+                 label='Search Recipe...'
                  value={inputValue}
                  onChange={handleChange}
                  onKeyDown={handleKeyDown}

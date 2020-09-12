@@ -15,7 +15,10 @@ export const MainWindow = props => {
      */
     var recipe_search_results = require("../utils/recipe_search_respone");
     const [sorting, setSorting] = React.useState("ASC");
-    const [recipes, setRecipes] = React.useState([]);
+    const [recipeList, setRecipeList] = React.useState([]);
+    useEffect(()=>{
+        console.log("New Recipe list: ", recipeList);
+    });
     const [searchWord, setSearchWord] = React.useState("");
     const [ingredientList, setIngredientList] = React.useState([]);
     useEffect(() => {
@@ -29,21 +32,31 @@ export const MainWindow = props => {
           return a.title.trim().toLowerCase() > b.title.trim().toLowerCase() ? -1 : 1;
         }
       };
-    const filterRecipes = () => {
-        /*
-        Filter out recipes
-         */
 
-      return searchResults
+      const filterRecipes = (word, recipe_collection) => {
+
+      var recs = recipe_collection.recipes
           .filter(recipe => recipe.title.toLowerCase()
-              .includes(searchWord.toLocaleLowerCase()))
+              .includes(word.toLocaleLowerCase()))
           .sort(sortRecipesByTitle);
+      console.log(recs);
+      return recs;
+    };
+
+    const addRecipeToList = recipe => {
+      setRecipeList(recipes => [...recipes, recipe]);
+      console.log('added recipe: ', recipe.title);
     };
     const searchRecipe = word => {
         setSearchWord(word);
-        console.log("Searchword: ", word)
+        console.log("Searchword: ", word);
         let recipe_example_db = require("../utils/30_random_recipe");
-        setRecipes(recipe_example_db)
+        var match_recipes = filterRecipes(word, recipe_example_db);
+        match_recipes.map(recipe => (
+            addRecipeToList(recipe)
+        ));
+        console.log("matches: ", match_recipes)
+
     };
     const addIngredientToList = ingredient => {
         setIngredientList(ingredients =>[...ingredients, ingredient]);
@@ -71,7 +84,7 @@ export const MainWindow = props => {
                 Reset ingredients
             </Button>
             <RecipeList
-                recipeList={filterRecipes()}
+                recipeList={recipeList}
             />
 
 

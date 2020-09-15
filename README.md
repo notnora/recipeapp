@@ -10,6 +10,8 @@ Get inspired, add your ingredients and the app will suggest some
 recipes for you to try based on the ingredients you listed.
 
 A fun way to get inspired and cut down on food waste! 
+
+Data from [The Spoonacular Recipe and Food API](https://spoonacular.com/food-api)
  
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

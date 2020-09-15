@@ -4,6 +4,8 @@ import {InputBar} from './InputBar';
 import { Button } from '@material-ui/core';
 import IngredientList from "./IngredientList";
 import RecipeList from "./RecipeList";
+import Header from "./Header";
+import "./style.css"
 /*
 Example responses:
  */
@@ -115,29 +117,39 @@ export const MainWindow = props => {
     };
 
     return (
-        <div>
-            <IngredientList
-                ingredientList={ingredientList} />
-            <SearchBar
-                search = {searchRecipe}/>
-            <InputBar
-                ingredients={ingredientList}
-                addIngredient = {addIngredientToList}/>
-            <Button
-                onClick ={resetIngredients}
-                variant="contained"
-                color="secondary">
-                Reset ingredients
-            </Button>
-            <Button
-                onClick ={resetRecipes}
-                variant="contained"
-                color="secondary">
-                Reset Recipes
-            </Button>
-            <RecipeList
-                recipeList={recipeList}
-            />
+        <div className="mainWindow">
+            <div>
+                <Header/>
+            </div>
+            <div className="search">
+                <SearchBar
+                    search = {searchRecipe}/>
+                <InputBar
+                    ingredients={ingredientList}
+                    addIngredient = {addIngredientToList}/>
+            </div>
+            <div className="buttons">
+                <Button
+                    onClick ={resetRecipes}
+                    variant="contained"
+                    color="secondary">
+                    Reset Recipes
+                </Button>
+                <Button
+                    onClick ={resetIngredients}
+                    variant="contained"
+                    color="secondary">
+                    Reset ingredients
+                </Button>
+            </div>
+            <div className="Lists">
+                <IngredientList
+                    ingredientList={ingredientList} />
+                <RecipeList
+                    recipeList={recipeList}
+                />
+            </div>
+
 
 
         </div>

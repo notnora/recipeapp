@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 .idea
+utils/30_random_recipe.json
+utils/recipe_search_respone.json
 # dependencies
 /node_modules
 /.pnp

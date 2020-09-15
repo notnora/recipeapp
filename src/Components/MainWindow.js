@@ -79,6 +79,10 @@ export const MainWindow = props => {
         console.log("Searchword: ", word); // Debug
         let recipe_example_db = require("../utils/30_random_recipe"); // Load the recipe-collection. Will be an api-call
         var match_recipes = filterRecipes(word, recipe_example_db); // get the matching recipes
+        if(match_recipes !== null){
+            // Removes the existing recipes if there is a match
+            resetRecipes();
+        }
         match_recipes.map(recipe => (
             addRecipeToList(recipe)
         ));
@@ -101,6 +105,14 @@ export const MainWindow = props => {
          */
         setIngredientList(ingredientList => []);
     };
+    const resetRecipes = () => {
+        /**
+         * Reset recipe list to be empty
+         * @return Null
+         */
+
+        setRecipeList(recipeList => []);
+    };
 
     return (
         <div>
@@ -114,8 +126,14 @@ export const MainWindow = props => {
             <Button
                 onClick ={resetIngredients}
                 variant="contained"
-                color="primary">
+                color="secondary">
                 Reset ingredients
+            </Button>
+            <Button
+                onClick ={resetRecipes}
+                variant="contained"
+                color="secondary">
+                Reset Recipes
             </Button>
             <RecipeList
                 recipeList={recipeList}

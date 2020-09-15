@@ -36,7 +36,7 @@ export const RecipeList = props => {
                         key="recipeListTitle">
                         <ListItemText
                             key="recipeListTitle"
-                            rimary="Suggested recipes"/>
+                            primary="Suggested recipes"/>
                     </ListItem>
                     <Divider/>
                     {props.recipeList.map(recipe => (
